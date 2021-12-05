@@ -65,5 +65,19 @@ fn part1(inputs: &Vec<SubCommand>) {
 }
 
 fn part2(inputs: &Vec<SubCommand>) {
-
+    let mut horizontal_position = 0;
+    let mut vertical_position = 0;
+    let mut aim = 0;
+    for i in inputs {
+        match i.direction {
+            Direction::Forward => {
+                horizontal_position += i.distance;
+                vertical_position += i.distance * aim
+            },
+            Direction::Up => aim -= i.distance,
+            Direction::Down => aim += i.distance
+        }
+    }
+    let answer = horizontal_position * vertical_position;
+    println!("The answer to day 2 part 2 is: {}", answer);
 }
